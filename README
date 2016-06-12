@@ -6,6 +6,64 @@ qt4
 mysql-community
 fdpf
 
+
+Bueno es un pequeño programa de punto de venta realizado con 
+
+pyton 2.7
+qt4
+mysql
+
+esta es mi bd
+bd = inventario
+tablas = usuarios, productos
+
+la tabla usuarios contiene los campos ::: id, nombre, password, permisos
+la tabla productos contiene los campos ::: id, producto, precio, cantidad, 
+marca
+
+todos los campos de las tablas son NN 
+el id de las dos tablas son PK y tambien AI
+
+para el manejo de la BD use mysql workbench
+al momento de crear la tabla de usuarios deben introducir un usuario
+ 
+nombre = """el que ustedes quieran"""
+password = """40bd001563085fc35165329ea1ff5c5ecbdbbeef"""
+permisos = """1"""
+
+y al momento de loguearse debe ser asi
+
+nombre = """el que ustedes quieran"""
+password = """123"""
+
+ya que cuando lo introducen este se cifra y es igual al guardado en la bd
+estoy empezando a investigar para crear un instalador y que al momento pida 
+los datos
+y con esto nos quitaremos ese paso de introducir al usuario manualmente 
+((ya seria para la version 3.0))
+
+con esos datos tienen acceso a el ingreso de usuarios y productos 
+
+de todos modos anexo el archivo sql exportado por el workbench
+
+mmm creo que eso es todo para hacerlo funcionar
+
+
+
+Nombre = Mauricio Roman Ruiz Bárcenas
+Alias = Abuelazo
+alias2 = Crostow
+Pais = México
+Carrera = Ing. en computacion con linea de acentuacion en redes
+Contacto = crostow.ewinkeiton@gmail.com
+		   mauro_ruiz2001@hotmail.com
+
+
+bueno creo que eso es todo cualquier cosa o duda que exista ahi esta mi 
+correo 
+
+por cierto trate de comentar todo el codigo para mayor comprension
+
 aun se encuentra en fase de dasarrollo 
 
 el proceso en el que se encuentra es la fase beta de la creacion del pdf 
