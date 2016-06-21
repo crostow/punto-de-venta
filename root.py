@@ -211,7 +211,7 @@ class general(QMainWindow):
 
 #########metodos para generar corte##################
     def archivo_mostrar(self):                      #
-        root_corte.carpeta(self, self.vendedor)   #
+        root_corte.mostrar_ventas(self, self.vendedor)   #
 #---------------------------------------------------#
 
 #metodo para informacion del programador

@@ -26,6 +26,8 @@ el id de las dos tablas son PK y tambien AI
 
 para el manejo de la BD use mysql workbench
 al momento de crear la tabla de usuarios deben introducir un usuario
+
+donde se guarde el programa crear 2 carpetas con nombre corte y reportes
  
 nombre = """el que ustedes quieran"""
 password = """40bd001563085fc35165329ea1ff5c5ecbdbbeef"""
@@ -35,6 +37,7 @@ y al momento de loguearse debe ser asi
 
 nombre = """el que ustedes quieran"""
 password = """123"""
+
 
 ya que cuando lo introducen este se cifra y es igual al guardado en la bd
 estoy empezando a investigar para crear un instalador y que al momento pida 
@@ -66,6 +69,7 @@ por cierto trate de comentar todo el codigo para mayor comprension
 
 aun se encuentra en fase de dasarrollo 
 
-el proceso en el que se encuentra es la fase beta de la creacion del pdf 
+creacion de reportes en pdf  
+
 donde se realiza un corte de las ventas realizdas 
 

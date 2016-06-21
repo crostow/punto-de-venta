@@ -103,19 +103,21 @@ def completar_venta(self, usuario_pv):
 #funcion para ver si existe el archivo
 def verificar_archivo(self):
     #se obtiene la fecha del sistema
-    fecha = str(time.strftime("%d") + "-" + time.strftime("%m") + "-" + time.strftime("%Y"))
+    self.fecha = str(time.strftime("%d") + "-" + time.strftime("%m") + "-" + time.strftime("%Y"))
     #se almacena la direccion del archivo en la variable archivo """OJO CAMBIAR LA DIRECCION POR DONDE VAYA A ESTAR SU ARCHIVO"""
-    archivo = "/home/"+ self.usuario_os +"/corte_pv/"+ self.usuario_pv +"-" + self.fecha + ".csv"
+    #archivo = "/home/"+ self.usuario_os +"/corte_pv/"+ self.usuario_pv +"-" + self.fecha + ".csv"
+    archivo = os.getcwd() +"/corte/"+ self.usuario_pv +"-" + self.fecha + ".csv"
     #compara con path si existe el archivo
     if os.path.isfile(archivo):
 		#si existe el archivo manda msj
 		#pass
-        print "archivo existe"
+        #print "archivo existe"
         #escribir archivo
         escribir_archivo(self)
 		#en caso contrario manda a llamar la funcion para crear el archivo
     else:
-    	#se manda a llamar la funcio crear archivo
+        #print "se brinco"
+        #se manda a llamar la funcio crear archivo
     	crear_archivo(self)
 
 #funcion para crear archivo
@@ -123,7 +125,7 @@ def crear_archivo(self):
     #se obtiene la fecha
     fecha = str(time.strftime("%d") + "-" + time.strftime("%m") + "-" + time.strftime("%Y"))
     # linea de comando para crear archivo en blanco """OJO CAMBIAR LA DIRECCION POR DONDE VAYA A ESTAR SU ARCHIVO"""
-    archivo = open("/home/"+ self.usuario_os +"/corte_pv/"+ self.usuario_pv +"-" + self.fecha + ".csv", 'w')
+    archivo = open(os.getcwd()+"/corte/"+ self.usuario_pv +"-" + self.fecha + ".csv", 'w')
     # se cierra el archivo
     archivo.close()
     #se manda llamar el metodo para escribir en el archivo
@@ -144,7 +146,7 @@ def escribir_archivo(self):
         #se almacenan los datos en una variable
         datos_almacenar = '{0},{1}\n'.format(producto, precio)
         #se abre el archivo para escribir en el """OJO CAMBIAR LA DIRECCION POR DONDE VAYA A ESTAR SU ARCHIVO"""
-        archivo = open("/home/"+ self.usuario_os +"/corte_pv/"+ self.usuario_pv +"-" + self.fecha + ".csv", 'a')
+        archivo = open(os.getcwd()+"/corte/"+ self.usuario_pv +"-" + self.fecha + ".csv", 'a')
         #se escriben los datos
         archivo.write(datos_almacenar)
         #se cierra el archivo
