@@ -1,0 +1,14 @@
+<RCC>
+  <qresource prefix="iconos">
+    <file>refresh_256.2.2.png</file>
+    <file>1211729599.2.2.png</file>
+    <file>bag.2.2.png</file>
+    <file>Billing-icon.2.png</file>
+    <file>borrar.2.2.png</file>
+    <file>cash_register.2.2.png</file>
+    <file>formulario_icon.2.2.png</file>
+    <file>iconos_rc.py</file>
+    <file>inventory_icon.2.jpg</file>
+    <file>nuevo-icono-de-grupo-de-usuario-14853.2.2.png</file>
+  </qresource>
+</RCC>

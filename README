@@ -1,19 +1,15 @@
 Punto de venta
 
-herramientas utilizadas
+Bueno es un pequeño programa de punto de venta con las herramientas utilizadas
+
 python 2.7 
 qt4
+mysql workbench
 mysql-community
 fdpf
 
+esta es la bd
 
-Bueno es un pequeño programa de punto de venta realizado con 
-
-pyton 2.7
-qt4
-mysql
-
-esta es mi bd
 bd = inventario
 tablas = usuarios, productos
 
@@ -27,8 +23,6 @@ el id de las dos tablas son PK y tambien AI
 para el manejo de la BD use mysql workbench
 al momento de crear la tabla de usuarios deben introducir un usuario
 
-donde se guarde el programa crear 2 carpetas con nombre corte y reportes
- 
 nombre = """el que ustedes quieran"""
 password = """40bd001563085fc35165329ea1ff5c5ecbdbbeef"""
 permisos = """1"""
@@ -42,6 +36,7 @@ password = """123"""
 ya que cuando lo introducen este se cifra y es igual al guardado en la bd
 estoy empezando a investigar para crear un instalador y que al momento pida 
 los datos
+
 y con esto nos quitaremos ese paso de introducir al usuario manualmente 
 ((ya seria para la version 3.0))
 
@@ -50,7 +45,6 @@ con esos datos tienen acceso a el ingreso de usuarios y productos
 de todos modos anexo el archivo sql exportado por el workbench
 
 mmm creo que eso es todo para hacerlo funcionar
-
 
 
 Nombre = Mauricio Roman Ruiz Bárcenas
@@ -62,14 +56,11 @@ Contacto = crostow.ewinkeiton@gmail.com
 		   mauro_ruiz2001@hotmail.com
 
 
-bueno creo que eso es todo cualquier cosa o duda que exista ahi esta mi 
-correo 
+cualquier duda que exista ahi esta mi correo 
 
 por cierto trate de comentar todo el codigo para mayor comprension
 
 aun se encuentra en fase de dasarrollo 
 
-creacion de reportes en pdf  
-
-donde se realiza un corte de las ventas realizdas 
+creacion de reportes en pdf donde se realiza un corte de las ventas realizdas 
 

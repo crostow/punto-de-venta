@@ -96,6 +96,7 @@ class Logueo(QMainWindow):
             #mensaje de usuario incorrecto
             QtGui.QMessageBox.warning(self, "Informacion", """Usuario incorrecto""", QtGui.QMessageBox.Ok)
             #print "usuario incorrecto"
+        return
 
     #metodo contraseña
     def contrasena(self):

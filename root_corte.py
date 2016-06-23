@@ -51,8 +51,6 @@ def mostrar_ventas(self, nombre):
 
     else:
         QtGui.QMessageBox.warning(self, "Informacion", "Aun no se an realizado ventas", QtGui.QMessageBox.Ok)
-
-
 #metodo para mostrar total de las ventas
 def total_corte(self):
     #se crea una lista vacia
@@ -111,13 +109,20 @@ def reporte_pdf(self):
             informacion.append(dato)
 
 
-    print informacion
-    print len(informacion)
-    f = len(informacion)/4
-    print f
+
+    r = len(informacion) % 4
+
+    if r != 0:
+        informacion.append("")
+        informacion.append("")
+    else:
+        pass
+
     y = pdf.get_y()
     y2 = pdf.get_y()
     x = pdf.get_x()
+
+
     index = 0
     pagina = 0
     bandera = 0
@@ -141,7 +146,7 @@ def reporte_pdf(self):
             y = y2
             bandera = 1
             pagina = 0
-        elif (pagina >= 275) and (bandera == 1):
+        elif (pagina >275) and (bandera == 1):
             pdf.add_page()
             y = y2
             bandera = 0
@@ -149,33 +154,59 @@ def reporte_pdf(self):
         else:
             y = y + 10
 
-    pdf.add_page()
 
-    pdf.set_line_width(1)
-    # arriba
-    pdf.line(0, 785, 595, 785)
-    # enmedio
-    pdf.line(400, 775, 595, 775)
-    # abajo
-    pdf.line(400, 765, 595, 765)
-    # 1 vertical
-    pdf.line(400, 765, 400, 785)
-    # 2 vertical
-    pdf.line(595, 765, 595, 785)
-    # 3 vertical
-    pdf.line(497.5, 765, 497.5, 785)
+    if pagina < 270:
+        pdf.set_line_width(1)
+        # arriba
+        pdf.line(0, 785, 595, 785)
+        # enmedio
+        pdf.line(400, 775, 595, 775)
+        # abajo
+        pdf.line(400, 765, 595, 765)
+        # 1 vertical
+        pdf.line(400, 765, 400, 785)
+        # 2 vertical
+        pdf.line(595, 765, 595, 785)
+        # 3 vertical
+        pdf.line(497.5, 765, 497.5, 785)
+        pdf.set_y(765)
+        pdf.cell(380)
+        pdf.cell(100, 10, "Total de productos", 0, 1)
+        pdf.set_y(775)
+        pdf.cell(380)
+        pdf.cell(100, 10, "Total de efectivo", 0, 1)
 
-    pdf.set_y(765)
-    pdf.cell(380)
-    pdf.cell(100, 10, "Total de productos", 0, 1)
+    else:
+        pdf.add_page()
+        pdf.image(os.getcwd()+"/iconos/null.png", 60, 200, 500)
+        pdf.set_line_width(1)
+        # arriba
+        pdf.line(0, 785, 595, 785)
+        # enmedio
+        pdf.line(400, 775, 595, 775)
+        # abajo
+        pdf.line(400, 765, 595, 765)
+        # 1 vertical
+        pdf.line(400, 765, 400, 785)
+        # 2 vertical
+        pdf.line(595, 765, 595, 785)
+        # 3 vertical
+        pdf.line(497.5, 765, 497.5, 785)
+        pdf.set_y(765)
+        pdf.cell(380)
+        pdf.cell(100, 10, "Total de productos", 0, 1)
+        pdf.set_y(765)
+        pdf.cell(500)
+        pdf.cell(100, 10, str(self.ui.corte_mostrar.rowCount()), 0, 1)
+        pdf.set_y(775)
+        pdf.cell(380)
+        pdf.cell(100, 10, "Total de efectivo", 0, 1)
+        pdf.set_y(775)
+        pdf.cell(500)
+        pdf.cell(100, 10, str(self.ui.corte_total.text()), 0, 1)
 
-    pdf.set_y(775)
-    pdf.cell(380)
-
-    pdf.cell(100, 10, "Total de efectivo", 0, 1)
 
     pdf.output(os.getcwd()+"/reportes/"+ self.usuario_pv + "-" + self.fecha + ".pdf", "F")
-
     # PARA WINDOWS: os.system("start AcroRD32 ruta_y_archivo.pdf &")
     os.system("atril "+os.getcwd()+"/reportes/"+ self.usuario_pv + "-" + self.fecha + ".pdf &")
 
@@ -183,6 +214,7 @@ def reporte_pdf(self):
 
 class PDF(FPDF):
     def header(self):
+
         self.fecha = str(time.strftime("%d") + "-" + time.strftime("%m") + "-" + time.strftime("%Y"))
         # Logo
         self.image(os.getcwd() + "/iconos/cash_register.2.2.png", 500, 0, 79)
@@ -202,13 +234,18 @@ class PDF(FPDF):
         # salta a la linea 20
         self.ln(30)
 
-
     # Page footer
     def footer(self):
         # Position at 1.5 cm from bottom
-        self.set_y(-15)
+        self.set_y(-50)
         # Arial italic 8
-        self.set_font('Arial', 'I', 12)
+        self.set_font('Arial', 'I', 8)
         # Page number
-        self.cell(0, 10, 'Page ' + str(self.page_no()) + '/{nb}', 0, 0, 'C')
+        self.cell(0, 10, "Pagina " + str(self.page_no()) + "/{nb}", 0, 0, "C")
+        self.set_y(-40)
+        self.cell(0, 10, "Informe de contacto ",0 ,0, "C")
+        self.set_y(-30)
+        self.cell(0, 10, "mauro_ruiz2001@hotmail.com",0 ,0, "C")
+        self.set_y(-20)
+        self.cell(0, 10, "crostow.ewinkeiton@gmail.com", 0, 0, "C")
 
