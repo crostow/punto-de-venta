@@ -20,29 +20,14 @@ marca
 todos los campos de las tablas son NN 
 el id de las dos tablas son PK y tambien AI
 
-para el manejo de la BD use mysql workbench
-al momento de crear la tabla de usuarios deben introducir un usuario
+datos para ingresar al programa 
 
-nombre = """el que ustedes quieran"""
-password = """40bd001563085fc35165329ea1ff5c5ecbdbbeef"""
-permisos = """1"""
+nombre = mauricio
+password = 123
 
-y al momento de loguearse debe ser asi
+ya despues pueden cambiar a los usuarios
 
-nombre = """el que ustedes quieran"""
-password = """123"""
-
-
-ya que cuando lo introducen este se cifra y es igual al guardado en la bd
-estoy empezando a investigar para crear un instalador y que al momento pida 
-los datos
-
-y con esto nos quitaremos ese paso de introducir al usuario manualmente 
-((ya seria para la version 3.0))
-
-con esos datos tienen acceso a el ingreso de usuarios y productos 
-
-de todos modos anexo el archivo sql exportado por el workbench
+anexo el archivo sql exportado por el workbench
 
 mmm creo que eso es todo para hacerlo funcionar
 
@@ -59,5 +44,3 @@ Contacto = crostow.ewinkeiton@gmail.com
 cualquier duda que exista ahi esta mi correo 
 
 por cierto trate de comentar todo el codigo para mayor comprension
-
-aun se encuentra en fase de dasarrollo 
