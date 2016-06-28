@@ -49,10 +49,12 @@ class Ui_MainWindow(object):
         self.logueo_cancelar.setObjectName(_fromUtf8("logueo_cancelar"))
         self.gridLayout_2.addWidget(self.logueo_cancelar, 3, 1, 1, 1)
         self.logueo_password = QtGui.QLineEdit(self.gridLayoutWidget)
+        self.logueo_password.setText(_fromUtf8(""))
         self.logueo_password.setEchoMode(QtGui.QLineEdit.Password)
         self.logueo_password.setObjectName(_fromUtf8("logueo_password"))
         self.gridLayout_2.addWidget(self.logueo_password, 2, 1, 1, 2)
         self.logueo_usuario = QtGui.QLineEdit(self.gridLayoutWidget)
+        self.logueo_usuario.setText(_fromUtf8(""))
         self.logueo_usuario.setObjectName(_fromUtf8("logueo_usuario"))
         self.gridLayout_2.addWidget(self.logueo_usuario, 1, 1, 1, 2)
         self.graphicsView = QtGui.QGraphicsView(self.centralwidget)
@@ -81,8 +83,6 @@ class Ui_MainWindow(object):
         self.label.setText(_translate("MainWindow", "Usuario", None))
         self.logueo_aceptar.setText(_translate("MainWindow", "Ingresar", None))
         self.logueo_cancelar.setText(_translate("MainWindow", "Salir", None))
-        self.logueo_password.setText(_translate("MainWindow", "123", None))
-        self.logueo_usuario.setText(_translate("MainWindow", "mauricio", None))
 
 import iconos_rc
 
