@@ -1,6 +1,6 @@
 Punto de venta
 
-Bueno es un pequeño programa de punto de venta con las herramientas utilizadas
+pequeño programa de punto de venta con las herramientas utilizadas
 
 python 2.7 
 qt4
@@ -8,39 +8,16 @@ mysql workbench
 mysql-community
 fdpf
 
-esta es la bd
-
-bd = inventario
-tablas = usuarios, productos
-
-la tabla usuarios contiene los campos ::: id, nombre, password, permisos
-la tabla productos contiene los campos ::: id, producto, precio, cantidad, 
-marca
-
-todos los campos de las tablas son NN 
-el id de las dos tablas son PK y tambien AI
-
-datos para ingresar al programa 
-
-nombre = mauricio
-password = 123
-
-ya despues pueden cambiar a los usuarios
-
-anexo el archivo sql exportado por el workbench
-
-mmm creo que eso es todo para hacerlo funcionar
-
 
 Nombre = Mauricio Roman Ruiz Bárcenas
 Alias = Abuelazo
 alias2 = Crostow
 Pais = México
-Carrera = Ing. en computacion con linea de acentuacion en redes
+Carrera = Ing. en computacion
 Contacto = crostow.ewinkeiton@gmail.com
-		   mauro_ruiz2001@hotmail.com
-
+	       mauro_ruiz2001@hotmail.com
 
 cualquier duda que exista ahi esta mi correo 
+trate de comentar todo el codigo para mayor comprension
 
-por cierto trate de comentar todo el codigo para mayor comprension
+si toman el proyecto como base o modificacion solo me gustaria que hagan referencia a este
