@@ -15,12 +15,27 @@ import time
 
 from PyQt4 import QtGui
 
+
+
+def eliminar_producto(self):
+    fila = self.ui.ventas_final.currentIndex().row()
+    self.ui.ventas_final.removeRow(fila)
+
 #metodo para mostrar los productos de la bd
 def ventas_mostrar(self):
     #se crea el qury para buscar los productos de la bd
     query = unicode("SELECT * FROM productos WHERE producto LIKE \"%{0}%\" ").format(unicode(self.ui.venta_buscar_nombre.text()))
-    #se ejecuta el query
+    # se ejecuta el query
     datos_obtenidos = conexion.consultas(query)
+
+    if len(datos_obtenidos)== 0 :
+        query = unicode("SELECT * FROM productos WHERE descripcion LIKE \"%{0}%\" ").format(unicode(self.ui.venta_buscar_nombre.text()))
+        datos_obtenidos = conexion.consultas(query)
+    else:
+        pass
+
+
+
     #se asigna el numero de columnas de qtablewidget
     self.ui.ventas_existencia.setColumnCount(5)
     #se asignan el numero de filas dado la longitud del resultado de la consulta
@@ -43,17 +58,17 @@ def mandar_venta(self):
     #se crea una lista vacia
     datos_vender = []
     #bucle para obtener los datos
-    for columna in xrange(4):
+    for columna in xrange(5):
         #se obtiene los datos de el qtablewidget
         dato = unicode(self.ui.ventas_existencia.item(fila, columna).text())
         #se agregan los datos a la lisa
         datos_vender.append(dato)
     #se elimina el valor en la posicion 3
-    datos_vender.pop(3)
+    #datos_vender.pop(3)
     #se inserta una fila en el 2do qtable widget
     self.ui.ventas_final.insertRow(self.ui.ventas_final.rowCount())
     #se asigna el numero de columnas a el 2d0 qtablewidget
-    self.ui.ventas_final.setColumnCount(3)
+    self.ui.ventas_final.setColumnCount(4)
     #se crea un item
     id = QtGui.QTableWidgetItem()
     #se le asigna el valor
@@ -67,11 +82,16 @@ def mandar_venta(self):
     # se manda al segundo qtablewidget
     self.ui.ventas_final.setItem(self.ui.ventas_final.rowCount()-1, 1, producto)
     # se crea un item
+    descripcion = QtGui.QTableWidgetItem()
+    # se le asigna el valor
+    descripcion.setText(datos_vender[2])
+    # se manda al segundo qtablewidget
+    self.ui.ventas_final.setItem(self.ui.ventas_final.rowCount() - 1, 2, descripcion)
     precio = QtGui.QTableWidgetItem()
     # se le asigna el valor
-    precio.setText(datos_vender[2])
+    precio.setText(datos_vender[3])
     # se manda al segundo qtablewidget
-    self.ui.ventas_final.setItem(self.ui.ventas_final.rowCount()-1, 2, precio)
+    self.ui.ventas_final.setItem(self.ui.ventas_final.rowCount()-1, 3, precio)
 
 
 #metodo para vender en el segundo qtablewidget
@@ -141,8 +161,8 @@ def escribir_archivo(self):
     #bucle para escribir datos en el archivo
     for fila in xrange(filas):
         #se toman el datos de el qtablewidget
-        producto = str(self.ui.ventas_final.item(fila, 1).text())
-        precio = str(self.ui.ventas_final.item(fila, 2).text())
+        producto = str(self.ui.ventas_final.item(fila, 2).text())
+        precio = str(self.ui.ventas_final.item(fila, 3).text())
         #se almacenan los datos en una variable
         datos_almacenar = '{0},{1}\n'.format(producto, precio)
         #se abre el archivo para escribir en el """OJO CAMBIAR LA DIRECCION POR DONDE VAYA A ESTAR SU ARCHIVO"""

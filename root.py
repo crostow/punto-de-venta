@@ -86,7 +86,8 @@ class general(QMainWindow):
         self.connect(self.ui.venta_buscar, SIGNAL("returnpressed()"), self.venta_mostrar)           #
 # --------------------------------------------------------------------------------------------------#
         self.ui.ventas_existencia.doubleClicked.connect(self.venta_click)                           #
-    #self.connect(self.ui.ventas_existencia, SIGNAL("doubleClicked()"), self.venta_click)           #
+        self.ui.ventas_final.doubleClicked.connect(self.quitar_producto)
+          #
 #  -------------------------------------------------------------------------------------------------#
         self.connect(self.ui.ventas_vender, SIGNAL("clicked()"), self.venta_final)                  #
         self.connect(self.ui.ventas_vender, SIGNAL("returnpressed()"), self.venta_final)
@@ -106,7 +107,8 @@ class general(QMainWindow):
         #se evaluan los permisos
         if datos[0][0] == '1':
             #si son 1 tienes acceso a todas las opciones
-            print "administrador"
+            #print "administrador"
+            pass
         #en caso contrario
         else:
             #se desactivan botones de la barra
@@ -197,6 +199,12 @@ class general(QMainWindow):
         self.ui.ventas_cancelar.setEnabled(True)    #
         root_venta.mandar_venta(self)               #
 #---------------------------------------------------#
+    def   quitar_producto(self):    #
+        root_venta.eliminar_producto(self)
+# ---------------------------------------------------#
+
+
+
     def venta_final(self):                          #
         self.ui.ventas_vender.setEnabled(False)     #
         self.ui.ventas_cancelar.setEnabled(False)

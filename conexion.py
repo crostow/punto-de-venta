@@ -12,7 +12,6 @@
 #importamos librerias necesarias
 import MySQLdb
 
-
 #datos para la conexion a la base de datos """ OJO CAMBIAR LOS DATOS POR LOS DE SU BD"""
 BD_HOST = 'localhost'
 BD_USUARIO = 'root'
@@ -30,7 +29,7 @@ def consultas (consulta):
     #los datos se agregan a una lista
     datos_conexion = [BD_HOST, BD_USUARIO, BD_PASSWORD, BD_NOMBRE]
     #conectamos a la BD
-    conn = MySQLdb.connect(*datos_conexion)
+    conn = MySQLdb.connect(*datos_conexion, charset = 'utf8')
     #creamos un cursor
     cursor = conn.cursor()
     #ejecutamos una consulta

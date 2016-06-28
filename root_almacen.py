@@ -20,6 +20,10 @@ def campo_vacio(self):
     if len(self.ui.producto_nombre.text()) == 0:
         #mensaje falta producto
         QtGui.QMessageBox.warning(self, "Informacion", """Te falta producto""", QtGui.QMessageBox.Ok)
+    # se evalua si la longitud del campo precio es 0
+    elif len(self.ui.producto_descripcion.text()) == 0:
+        # mensaje falta precio
+        QtGui.QMessageBox.warning(self, "Informacion", """Te falta descripcion""", QtGui.QMessageBox.Ok)
     #se evalua si la longitud del campo precio es 0
     elif len(self.ui.producto_precio.text()) == 0:
         #mensaje falta precio
@@ -36,18 +40,19 @@ def campo_vacio(self):
 def ingresar_producto(self):
     #se toman los valores de los campos
     producto = unicode(self.ui.producto_nombre.text())
+    descripcion = unicode(self.ui.producto_descripcion.text())
     precio = float(self.ui.producto_precio.text())
     cantidad = unicode(self.ui.producto_cantidad.text())
-    marca = unicode(self.ui.producto_marca.text())
+
     #se crea un query para insertar los datos
-    query = unicode("INSERT INTO productos(producto, precio, cantidad, marca) VALUES(\"{0}\",\"{1}\",\"{2}\",\"{3}\")").format(producto, precio, cantidad, marca)
+    query = unicode("INSERT INTO productos(producto, descripcion, precio, cantidad) VALUES(\"{0}\",\"{1}\",\"{2}\",\"{3}\")").format(producto, descripcion, precio, cantidad)
     #se ejecuta el query
     conexion.consultas(query)
     #se limpian los campos
     self.ui.producto_nombre.setText('')
     self.ui.producto_precio.setText('')
     self.ui.producto_cantidad.setText('')
-    self.ui.producto_marca.setText('')
+    self.ui.producto_descripcion.setText('')
 ################################################################################################################################################
 
 
@@ -58,6 +63,11 @@ def buscar_producto(self):
     query = unicode("SELECT * FROM productos WHERE producto LIKE \"%{0}%\"").format(unicode(self.ui.actualizar_producto.text()))
     #se ejecuta el query y se almacena en una valriable
     datos_obtenidos = conexion.consultas(query)
+    if len(datos_obtenidos) == 0:
+        query = unicode("SELECT * FROM productos WHERE descripcion LIKE \"%{0}%\"").format(unicode(self.ui.actualizar_producto.text()))
+        datos_obtenidos = conexion.consultas(query)
+    else:
+        pass
     #se toma la longitud de la consulta realizada y se asigna a una variable global para usarla en otros metodos
     self.datos = len(datos_obtenidos)
     #se asignan el numero de columnas para la tabla
@@ -89,7 +99,7 @@ def alterar_producto(self):
                 #se agrega dato a la lista
                 datos_obtenidos.append(dato)
         #se crea query para actualizar productos
-        query = unicode("UPDATE productos SET producto = \"{1}\", precio = \"{2}\", cantidad = \"{3}\", marca = \"{4}\" WHERE id = \"{0}\" ").format(*datos_obtenidos)
+        query = unicode("UPDATE productos SET producto = \"{1}\", descripcion = \"{2}\", precio = \"{3}\", cantidad = \"{4}\" WHERE id = \"{0}\" ").format(*datos_obtenidos)
         #se ejecuta la consulta
         conexion.consultas(query)
         #se limpia la lista
@@ -107,19 +117,24 @@ def eliminar_mostrar(self):
     #se crea un query para seleccionar productos tomando el valor de un qlabel
     query = unicode("SELECT * FROM productos WHERE producto LIKE \"%{0}%\"").format(unicode(self.ui.eliminar_producto.text()))
     #se ejecuta la consulta y se almacena en una variable
-    datos_ontenidos = conexion.consultas(query)
+    datos_obtenidos = conexion.consultas(query)
+    if len(datos_obtenidos) == 0:
+        query = unicode("SELECT * FROM productos WHERE descripcion LIKE \"%{0}%\"").format(unicode(self.ui.eliminar_producto.text()))
+        datos_obtenidos = conexion.consultas(query)
+    else:
+        pass
     #se asignan las columnas para la tabla
-    self.ui.eliminar_lista_2.setColumnCount(4)
+    self.ui.eliminar_lista_2.setColumnCount(5)
     #se asignan las filas dad la longitud de la consulta
-    self.ui.eliminar_lista_2.setRowCount(len(datos_ontenidos))
+    self.ui.eliminar_lista_2.setRowCount(len(datos_obtenidos))
     #bucle para llenar tabla por fila
-    for fila in xrange(len(datos_ontenidos)):
+    for fila in xrange(len(datos_obtenidos)):
         #bucle para llenar tabla por columna
-        for columna in xrange(4):
+        for columna in xrange(5):
             #se cre un tem
             dato = QtGui.QTableWidgetItem()
             #se asigna el valor al item
-            dato.setText("%s" % (unicode(datos_ontenidos[fila][columna])))
+            dato.setText("%s" % (unicode(datos_obtenidos[fila][columna])))
             #se manda el valor por posición fila columna
             self.ui.eliminar_lista_2.setItem(fila, columna, dato)
 #----------------------------------------------------------------------------------------------------------------------------------------------

@@ -11,6 +11,7 @@
 
 #importamos librerias necesarias
 import time
+import sys
 import csv
 import os
 from PyQt4 import QtGui
@@ -133,7 +134,7 @@ def reporte_pdf(self):
             pdf.set_y(y)
             pdf.set_x(x)
             #pdf.cell(60, 10, "columna" + str(eje_x), 1, 1)
-            pdf.cell(60, 10, str(informacion[index]), 1, 1)
+            pdf.cell(60, 10, str(informacion[index]), 0, 1)
             x = x + 100
             index = index + 1
             pagina = pagina +1
@@ -172,9 +173,15 @@ def reporte_pdf(self):
         pdf.set_y(765)
         pdf.cell(380)
         pdf.cell(100, 10, "Total de productos", 0, 1)
+        pdf.set_y(765)
+        pdf.cell(500)
+        pdf.cell(100, 10, str(self.ui.corte_mostrar.rowCount()), 0, 1)
         pdf.set_y(775)
         pdf.cell(380)
         pdf.cell(100, 10, "Total de efectivo", 0, 1)
+        pdf.set_y(775)
+        pdf.cell(500)
+        pdf.cell(100, 10, str(self.ui.corte_total.text()), 0, 1)
 
     else:
         pdf.add_page()
@@ -207,9 +214,12 @@ def reporte_pdf(self):
 
 
     pdf.output(os.getcwd()+"/reportes/"+ self.usuario_pv + "-" + self.fecha + ".pdf", "F")
-    # PARA WINDOWS: os.system("start AcroRD32 ruta_y_archivo.pdf &")
-    os.system("atril "+os.getcwd()+"/reportes/"+ self.usuario_pv + "-" + self.fecha + ".pdf &")
 
+    so = sys.platform
+    if so == "linux":
+        os.system("atril "+os.getcwd()+"/reportes/"+ self.usuario_pv + "-" + self.fecha + ".pdf &")
+    else:
+        os.system("start "+os.getcwd()+"/reportes/"+ self.usuario_pv + "-" + self.fecha + ".pdf &")
 
 
 class PDF(FPDF):
